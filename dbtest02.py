@@ -10,6 +10,7 @@ import pymysql  # mysql과 연동시켜주는 라이브러리
 4. 데이터베이스 스키마 이름
     - ex. shopdb
 """
+
 # 파이썬과 mysql간의 connection 생성
 dbCon = pymysql.connect(host='localhost', user='root', password='12345', db='shopdb')
 
