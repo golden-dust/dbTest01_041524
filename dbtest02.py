@@ -18,6 +18,8 @@ sql = ("INSERT INTO membertbl (memberID, memberName, memberAddress) VALUES ('tig
 
 cur = dbCon.cursor()    # 커서 호출해서 변수로 저장
 cur.execute(sql)    # 연결된 DB의 스키마에 지정된 SQL문이 실행됨
+# result = cur.execute(sql)
+# print(result) => insert, update, delete문이 실행 된 후의 결과 반환 -> 성공 = 1, 실패 0
 
 # dbCon의 사용이 종료된 후에는 반드시 닫아줄 것! (.close())
 # cursor.close() -> dbConnection.close()
