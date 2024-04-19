@@ -20,6 +20,8 @@ class MainWindow(form_class, QMainWindow):
         self.membermodify_btn.clicked.connect(self.modify_info)
         self.login_btn.clicked.connect(self.member_login)
         self.loginreset_btn.clicked.connect(self.login_reset)
+        self.deletereset_btn.clicked.connect(self.delete_reset)
+        self.delete_btn.clicked.connect(self.delete_member)
 
     def member_join(self):  # 회원 가입 이벤트 처리 함수
 
@@ -183,6 +185,37 @@ class MainWindow(form_class, QMainWindow):
     def login_reset(self):
         self.loginid_edit.clear()
         self.loginpw_edit.clear()
+
+    def delete_member(self):
+        input_id = self.deleteid_edit.text()
+        input_pw = self.deletepw_edit.text()
+
+        if input_id == "" or input_pw == "":
+            QMessageBox.warning(self, "입력오류", "탈퇴를 원하는 아이디와 비밀번호를 입력하세요.")
+        elif (self.check_id_exist(input_id) == 0) or (self.check_pw(input_id, input_pw) == 0):
+            QMessageBox.warning(self, "입력오류", "존재하지 않는 아이디거나 비밀번호가 올바르지 않습니다.")
+        else:
+            reply = QMessageBox.question(self, "탈퇴확인", "정말 탈퇴하시겠습니까?", QMessageBox.No | QMessageBox.Yes, QMessageBox.No)
+            if reply == QMessageBox.No:
+                pass
+            elif reply == QMessageBox.Yes:
+                dbConn = pymysql.connect(host='localhost', user='root', password='12345', db='shopdb')
+                sql = f"DELETE FROM appmember WHERE memberID = '{input_id}'"
+                cur = dbConn.cursor()
+                result = cur.execute(sql)
+                cur.close()
+
+                if result == 1:
+                    QMessageBox.about(self, "탈퇴완료", f"{input_id}님의 탈퇴가 완료되었습니다.")
+                    self.delete_reset()
+
+                dbConn.commit()
+                dbConn.close()
+
+    def delete_reset(self):
+        self.deleteid_edit.clear()
+        self.deletepw_edit.clear()
+
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)

@@ -499,6 +499,129 @@ color: rgb(255, 255, 255);</string>
       </property>
      </widget>
     </widget>
+    <widget class="QWidget" name="tab4">
+     <attribute name="title">
+      <string>회원탈퇴</string>
+     </attribute>
+     <widget class="QLabel" name="label_9">
+      <property name="geometry">
+       <rect>
+        <x>112</x>
+        <y>90</y>
+        <width>56</width>
+        <height>12</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>맑은 고딕</family>
+       </font>
+      </property>
+      <property name="text">
+       <string>아이디 :</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="deletepw_edit">
+      <property name="geometry">
+       <rect>
+        <x>164</x>
+        <y>115</y>
+        <width>181</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>맑은 고딕</family>
+       </font>
+      </property>
+      <property name="echoMode">
+       <enum>QLineEdit::Password</enum>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="deleteid_edit">
+      <property name="geometry">
+       <rect>
+        <x>163</x>
+        <y>85</y>
+        <width>181</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>맑은 고딕</family>
+       </font>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="deletereset_btn">
+      <property name="geometry">
+       <rect>
+        <x>162</x>
+        <y>170</y>
+        <width>75</width>
+        <height>23</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>맑은 고딕</family>
+       </font>
+      </property>
+      <property name="text">
+       <string>초기화</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="delete_btn">
+      <property name="geometry">
+       <rect>
+        <x>252</x>
+        <y>170</y>
+        <width>75</width>
+        <height>23</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>맑은 고딕</family>
+       </font>
+      </property>
+      <property name="text">
+       <string>탈퇴</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_10">
+      <property name="geometry">
+       <rect>
+        <x>100</x>
+        <y>120</y>
+        <width>56</width>
+        <height>12</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>맑은 고딕</family>
+       </font>
+      </property>
+      <property name="text">
+       <string>비밀번호 :</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_11">
+      <property name="geometry">
+       <rect>
+        <x>100</x>
+        <y>50</y>
+        <width>271</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>탈퇴를 원하는 아이디와 비밀번호를 입력하세요</string>
+      </property>
+     </widget>
+    </widget>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
@@ -520,21 +643,25 @@ color: rgb(255, 255, 255);</string>
   <tabstop>login_btn</tabstop>
   <tabstop>loginreset_btn</tabstop>
   <tabstop>joinid_edit</tabstop>
+  <tabstop>idcheck_btn</tabstop>
   <tabstop>joinpw_edit</tabstop>
   <tabstop>joinname_edit</tabstop>
   <tabstop>joinemail_edit</tabstop>
   <tabstop>joinage_edit</tabstop>
   <tabstop>join_btn</tabstop>
   <tabstop>joinreset_btn</tabstop>
-  <tabstop>idcheck_btn</tabstop>
-  <tabstop>memberreset_btn</tabstop>
   <tabstop>memberid_edit</tabstop>
-  <tabstop>membersearch_btn</tabstop>
   <tabstop>memberpw_edit</tabstop>
+  <tabstop>membersearch_btn</tabstop>
   <tabstop>membername_edit</tabstop>
   <tabstop>memberemail_edit</tabstop>
   <tabstop>memberage_edit</tabstop>
   <tabstop>membermodify_btn</tabstop>
+  <tabstop>memberreset_btn</tabstop>
+  <tabstop>deleteid_edit</tabstop>
+  <tabstop>deletepw_edit</tabstop>
+  <tabstop>deletereset_btn</tabstop>
+  <tabstop>delete_btn</tabstop>
  </tabstops>
  <resources/>
  <connections/>
