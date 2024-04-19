@@ -11,18 +11,20 @@ class MainWindow(form_class, QMainWindow):
         super().__init__()
         self.setupUi(self)
         self.setWindowTitle("회원 관리 프로그램")
-
-        self. join_btn.clicked.connect(self.member_join)    # 회원가입 버튼이 클릭되면 가입함수 호출
+        self.idchecked_ = False
+        self.join_btn.clicked.connect(self.member_join)    # 회원가입 버튼이 클릭되면 가입함수 호출
         self.joinreset_btn.clicked.connect(self.join_reset)     # 초기화 버튼이 클릭되면 입력내용 초기화
-
+        self.idcheck_btn.clicked.connect(self.id_check)     # 회원 가입 여부 체크 버튼 클릭 -> 가입여부 확인
 
 
     def member_join(self):  # 회원 가입 이벤트 처리 함수
+
         input_id = self. joinid_edit.text()     # 유저가 입력한 회원아이디 텍스트 가져오기
         input_pw = self.joinpw_edit.text()
         input_name = self.joinname_edit.text()
         input_email = self.joinemail_edit.text()
         input_age = self.joinage_edit.text()
+
 
         if input_id == "" or input_pw == "" or input_name == "" or input_email == "" or input_age == "":
             QMessageBox.warning(self, "정보입력오류", "회원 정보 중 입력되지 않은 정보가 있습니다.\n모든 정보를 입력해주세요.")
@@ -30,6 +32,8 @@ class MainWindow(form_class, QMainWindow):
             QMessageBox.warning(self, "아이디입력오류", "아이디는 4글자 이상, 14자 이하이어야 합니다.\n다시 입력해주세요.")
         elif len(input_pw) < 4 or len(input_pw) > 14:
             QMessageBox.warning(self, "비밀번호입력오류", "비밀번호는 4글자 이상, 14자 이하이어야 합니다.\n다시 입력해주세요.")
+        elif self.idchecked_ == False:
+            QMessageBox.warning(self, "아이디중복확인", "입력된 아이디 확인 버튼을 눌러주세요.")
         else:
             dbConn = pymysql.connect(user="root", password="12345", host="localhost", db="shopdb")
 
@@ -53,9 +57,28 @@ class MainWindow(form_class, QMainWindow):
         self.joinemail_edit.clear()
         self.joinage_edit.clear()
 
-    def id_check(self):
-
+    def id_check(self):     # 동일 아이디 존재 여부 확인 함수
         input_id = self.joinid_edit.text()
+        if input_id == "":
+            QMessageBox.warning(self, "아이디입력오류", "아이디를 입력해주세요")
+        elif len(input_id) < 4 or len(input_id) > 14:
+            QMessageBox.warning(self, "아이디입력오류", "아이디는 4글자 이상, 14자 이하이어야 합니다.\n다시 입력해주세요.")
+        else:
+            dbConn = pymysql.connect(user="root", password="12345", host="localhost", db="shopdb")
+            sql = f"SELECT COUNT(*) FROM appmember WHERE memberID = '{input_id}'"
+            # 실행 시 1 또는 0 반환 (기존에 가입된 아이디면 1, 아니면 0)
+            cur = dbConn.cursor()
+            cur.execute(sql)
+            search = cur.fetchall()
+            print(search)
+
+            if search[0][0] == 1:
+                QMessageBox.warning(self, "아이디사용불가", "이미 가입된 아이디입니다.\n다시 입력해주세요.")
+            else:
+                QMessageBox.warning(self, "아이디사용가능", "가입 가능한 아이디입니다.")
+                self.idchecked_ = True
+            cur.close()
+            dbConn.close()
 
 
 
